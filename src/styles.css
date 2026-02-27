@@ -131,11 +131,9 @@
 
 .video-preview {
   width: 100%;
-  max-width: 260px; /* Batasi lebar */
-  aspect-ratio: 9 / 16;
-  background: #000;
+  max-width: 260px;
   border-radius: 12px;
-  object-fit: cover; /* Memastikan video tetap rapi di dalam frame */
+  margin-bottom: 15px;
 }
 
 .stats {
