@@ -122,9 +122,9 @@ function App() {
             </div>
 
             <div className="button-group">
-              <a href={result.no_watermark_link} target="_blank" rel="noreferrer">
+              <a href={result.no_watermark_link_hd} target="_blank" rel="noreferrer">
                 <button className="btn-download video">
-                  Download Video
+                  Download Video Hd
                 </button>
               </a>
 
