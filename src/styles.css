@@ -1,0 +1,61 @@
+/* THEME */
+.wrapper.dark {
+  background: linear-gradient(135deg, #0f0c29, #302b63);
+  color: white;
+}
+
+.wrapper.light {
+  background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+  color: #222;
+}
+
+.wrapper.light .hero-card,
+.wrapper.light .result-card {
+  background: rgba(255,255,255,0.7);
+  color: #222;
+}
+
+/* THEME BUTTON */
+.theme-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.theme-toggle button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+/* SKELETON */
+.skeleton {
+  animation: pulse 1.5s infinite;
+}
+
+.skeleton-video {
+  height: 200px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.1);
+  margin-bottom: 20px;
+}
+
+.skeleton-stats {
+  height: 20px;
+  background: rgba(255,255,255,0.1);
+  margin: 10px 0;
+}
+
+.skeleton-button {
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  margin-top: 15px;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
