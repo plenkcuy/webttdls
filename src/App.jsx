@@ -9,7 +9,7 @@ function App() {
 
   // VALIDASI LINK TIKTOK
   const isValidTikTok = (link) => {
-    const regex = /^(https?:\/\/)?(www\.)?(tiktok\.com|vm\.tiktok\.com)\/.+$/;
+    const regex = /^(https?:\/\/)?(www\.)?(tiktok\.com|vm\.tiktok\.com|vt\.tiktok\.com)\/.+$/;
     return regex.test(link);
   };
 
