@@ -112,7 +112,7 @@ function App() {
               src={result.no_watermark_link}
             />
 
-            <div className="stats">
+            <div className="stats">{result.text}</div>
               <div className="stat">❤️ {result.like_count}</div>
               <div className="stat">💬 {result.comment_count}</div>
               <div className="stat">🔁 {result.share_count}</div>
