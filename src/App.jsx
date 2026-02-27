@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
+import "./App.css";
 
 function App() {
   const [url, setUrl] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [theme, setTheme] = useState("dark");
+  // Ambil tema dari storage atau default ke dark
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
+
+  // Simpan tema ke localStorage setiap kali berubah
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
   // VALIDASI LINK TIKTOK
   const isValidTikTok = (link) => {
@@ -21,9 +28,10 @@ function App() {
         if (isValidTikTok(text)) {
           setUrl(text);
         }
-      } catch (err) {}
+      } catch (err) {
+        // Abaikan jika permission ditolak
+      }
     };
-
     getClipboard();
   }, []);
 
@@ -41,21 +49,11 @@ function App() {
 
     try {
       const response = await fetch(
-        `https://api.siputzx.my.id/api/d/tiktok/v2?url=${encodeURIComponent(url)}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json"
-          }
-        }
+        `https://api.siputzx.my.id/api/d/tiktok/v2?url=${encodeURIComponent(url)}`
       );
-
       const data = await response.json();
 
-      if (!data.status) {
-        throw new Error();
-      }
-
+      if (!data.status) throw new Error();
       setResult(data.data);
     } catch {
       setError("Terjadi kesalahan saat mengambil data.");
@@ -66,19 +64,17 @@ function App() {
 
   return (
     <main className={`wrapper ${theme}`}>
-
+      {/* TEMA TOGGLE */}
       <div className="theme-toggle">
         <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-          {theme === "dark" ? "Light Mode" : "Dark Mode"}
+          {theme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"}
         </button>
       </div>
 
       <section className="hero">
         <div className="hero-card">
           <h1 className="title">TikTok Downloader</h1>
-          <p className="subtitle">
-            Download video tanpa watermark dengan cepat
-          </p>
+          <p className="subtitle">Download video tanpa watermark dengan cepat</p>
 
           <form onSubmit={handleSubmit} className="download-form">
             <div className="input-group">
@@ -98,15 +94,16 @@ function App() {
       </section>
 
       <section className="result-section">
-
+        {/* LOADING SKELETON */}
         {loading && (
           <div className="result-card skeleton">
             <div className="skeleton-video"></div>
             <div className="skeleton-stats"></div>
-            <div className="skeleton-button"></div>
+            <div className="skeleton-stats" style={{ width: "60%" }}></div>
           </div>
         )}
 
+        {/* HASIL DOWNLOAD */}
         {result && !loading && (
           <div className="result-card success">
             <video
@@ -116,7 +113,6 @@ function App() {
             />
 
             <div className="stats">
-              <div classname="stat">{result.text}</div>
               <div className="stat">❤️ {result.like_count}</div>
               <div className="stat">💬 {result.comment_count}</div>
               <div className="stat">🔁 {result.share_count}</div>
@@ -124,26 +120,21 @@ function App() {
 
             <div className="button-group">
               <a href={result.no_watermark_link_hd} target="_blank" rel="noreferrer">
-                <button className="btn-download video">
-                  Download Video Hd
-                </button>
+                <button className="btn-download video">Video HD</button>
               </a>
-
               <a href={result.music_link} target="_blank" rel="noreferrer">
-                <button className="btn-download music">
-                  Download Music
-                </button>
+                <button className="btn-download music">Music MP3</button>
               </a>
             </div>
           </div>
         )}
 
+        {/* ERROR MESSAGE */}
         {error && (
           <div className="result-card error">
-            <p>{error}</p>
+            <p style={{ color: "#ff4d4d" }}>{error}</p>
           </div>
         )}
-
       </section>
     </main>
   );
