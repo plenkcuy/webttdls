@@ -19,14 +19,10 @@
   --btn-hover: #4e4eff;
   
   min-height: 100vh;
-  font-family: 'Poppins', sans-serif;
-  background: var(--bg-gradient);
-  color: var(--text-main);
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 20px;
-  /* Efek Animasi Lampu */
+  padding: 20px 20px 40px 20px; /* Atas diperkecil (20px), bawah 40px */
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -188,21 +184,23 @@
 .footer {
   width: 100%;
   text-align: center;
-  margin-top: auto; /* Mendorong footer ke bawah jika konten sedikit */
-  padding-top: 40px; /* Jarak dari konten di atasnya */
-  padding-bottom: 10px;
+  margin-top: 30px; /* Jarak tetap dari kartu terakhir, tidak lari ke bawah layar */
+  padding-bottom: 20px;
 }
 
 .creator-text {
-  font-size: 14px;
-  font-weight: 300; /* Tipis agar elegan */
-  color: var(--text-dim); /* Menggunakan warna halus dari variabel tema */
-  letter-spacing: 1px; /* Memberi sedikit jarak antar huruf */
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
+  font-size: 18px; /* Ukuran diperbesar */
+  font-weight: 600; /* Lebih tebal agar tegas */
+  color: var(--text-main); /* Menggunakan warna utama agar lebih jelas */
+  letter-spacing: 2px; /* Jarak antar huruf lebih elegan */
+  text-transform: uppercase; /* Membuatnya jadi huruf kapital semua agar 'Pro' */
+  opacity: 0.6;
+  transition: all 0.3s ease;
+  font-family: 'Poppins', sans-serif;
 }
 
 .creator-text:hover {
-  opacity: 1; /* Sedikit lebih terang saat di-hover */
-  color: var(--accent); /* Menggunakan warna aksen tema saat di-hover */
+  opacity: 1;
+  letter-spacing: 4px; /* Efek interaktif saat disentuh */
+  color: var(--accent);
 }
