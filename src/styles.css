@@ -184,3 +184,25 @@
 @media(max-width:768px) {
   .input-group { flex-direction: column; }
 }
+
+.footer {
+  width: 100%;
+  text-align: center;
+  margin-top: auto; /* Mendorong footer ke bawah jika konten sedikit */
+  padding-top: 40px; /* Jarak dari konten di atasnya */
+  padding-bottom: 10px;
+}
+
+.creator-text {
+  font-size: 14px;
+  font-weight: 300; /* Tipis agar elegan */
+  color: var(--text-dim); /* Menggunakan warna halus dari variabel tema */
+  letter-spacing: 1px; /* Memberi sedikit jarak antar huruf */
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.creator-text:hover {
+  opacity: 1; /* Sedikit lebih terang saat di-hover */
+  color: var(--accent); /* Menggunakan warna aksen tema saat di-hover */
+}
