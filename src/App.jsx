@@ -107,13 +107,15 @@ function App() {
         {result && !loading && (
           <div className="result-card success">
             <video
-              className="video-preview"
-              controls
-              src={result.no_watermark_link}
-            />
+  key={result.no_watermark_link} // Menjamin elemen di-refresh total
+  className="video-preview"
+  controls
+  preload="metadata" // Agar tidak mendownload seluruh file HD di awal
+  src={result.no_watermark_link}
+/>
 
             <div className="stats">
-              <div className"stat">{result.text}</div>
+              <div className="stat">{result.text}</div>
               <div className="stat">❤️ {result.like_count}</div>
               <div className="stat">💬 {result.comment_count}</div>
               <div className="stat">🔁 {result.share_count}</div>
