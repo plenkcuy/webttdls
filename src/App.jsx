@@ -127,6 +127,7 @@ function App() {
                 <button className="btn-download music">Music MP3</button>
               </a>
             </div>
+          </div>
         )}
 
         {/* ERROR MESSAGE */}
