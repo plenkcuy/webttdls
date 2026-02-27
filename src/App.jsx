@@ -116,6 +116,7 @@ function App() {
             />
 
             <div className="stats">
+              <div classname="stat">{result.text}</div>
               <div className="stat">❤️ {result.like_count}</div>
               <div className="stat">💬 {result.comment_count}</div>
               <div className="stat">🔁 {result.share_count}</div>
