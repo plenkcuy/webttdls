@@ -132,13 +132,16 @@ function App() {
           </div>
         )}
 
-        {/* ERROR MESSAGE */}
         {error && (
           <div className="result-card error">
             <p style={{ color: "#ff4d4d" }}>{error}</p>
           </div>
         )}
       </section>
+      
+      <footer className="footer">
+        <p className="creator-text">Creator: apx.co</p>
+      </footer>
     </main>
   );
 }
