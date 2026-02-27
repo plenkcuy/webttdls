@@ -41,7 +41,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `https://app.siputzx.my.id/api/d/tiktok/v2?url=${encodeURIComponent(url)}`,
+        `https://api.siputzx.my.id/api/d/tiktok/v2?url=${encodeURIComponent(url)}`,
         {
           method: "GET",
           headers: {
