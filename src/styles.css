@@ -1,3 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0f0c29, #302b63);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+/* WRAPPER */
+.wrapper {
+  width: 100%;
+  padding: 40px 20px;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+
+.hero-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 35px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+}
+
+.title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  opacity: 0.7;
+  margin-bottom: 25px;
+}
+
+/* INPUT */
+.input-group {
+  display: flex;
+  gap: 10px;
+}
+
+.input-group input {
+  flex: 1;
+  padding: 14px 18px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.1);
+  color: white;
+}
+
+.input-group input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+
+.btn-primary {
+  padding: 14px 25px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  background: #5f5fff;
+  color: white;
+  transition: 0.2s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+/* RESULT */
+.result-section {
+  display: flex;
+  justify-content: center;
+}
+
+.result-card {
+  width: 100%;
+  max-width: 600px;
+  padding: 30px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.video-preview {
+  border-radius: 12px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 320px;
+}
+
+/* STATS */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.stat {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(255,255,255,0.08);
+  font-size: 14px;
+}
+
+/* BUTTON GROUP */
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.btn-download {
+  padding: 10px 18px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  background: #4444ff;
+  transition: 0.2s ease;
+}
+
+.btn-download.music {
+  background: #ff4db8;
+}
+
+.btn-download:hover {
+  opacity: 0.85;
+}
+
+/* ERROR */
+.result-card.error {
+  background: rgba(255, 0, 0, 0.15);
+  border: 1px solid rgba(255, 0, 0, 0.4);
+}
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  .input-group {
+    flex-direction: column;
+  }
+
+  .btn-primary {
+    width: 100%;
+  }
+}
+
 /* THEME */
 .wrapper.dark {
   background: linear-gradient(135deg, #0f0c29, #302b63);
