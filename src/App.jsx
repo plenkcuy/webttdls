@@ -112,7 +112,8 @@ function App() {
               src={result.no_watermark_link}
             />
 
-            <div className="stats">{result.text}</div>
+            <div className="stats">
+              <div className="stat">{result.text}</div>
               <div className="stat">❤️ {result.like_count}</div>
               <div className="stat">💬 {result.comment_count}</div>
               <div className="stat">🔁 {result.share_count}</div>
@@ -126,7 +127,6 @@ function App() {
                 <button className="btn-download music">Music MP3</button>
               </a>
             </div>
-          </div>
         )}
 
         {/* ERROR MESSAGE */}
