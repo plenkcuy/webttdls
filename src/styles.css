@@ -206,6 +206,38 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
+/* Container Statistik */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+/* Item Statistik Individu (Like, Comment, Share) */
+.stat {
+  padding: 8px 16px;
+  border-radius: 30px; /* Bentuk kapsul */
+  background: var(--input-bg); /* Mengikuti warna tema */
+  color: var(--text-main);
+  font-size: 14px;
+  font-weight: 600;
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Jarak antara emoji dan angka */
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Efek saat kursor di atas stat */
+.stat:hover {
+  transform: translateY(-2px);
+  background: var(--card-bg);
+  border-color: var(--accent);
+}
+
 /* Styling Dasar Tombol Download */
 .btn-download {
   flex: 1; /* Agar tombol berbagi ruang secara adil */
