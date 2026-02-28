@@ -107,58 +107,82 @@ function App() {
         {result && !loading && (
   <div className="result-card success">
     
-    {/* BAGIAN 1: MEDIA (GAMBAR ATAU VIDEO) */}
+    {/* LOGIKA MEDIA UTAMA */}
     {result.type === 3 ? (
-      <div className="slides-container">
-        <div className="image-grid">
-          {Object.keys(result.slides)
-            .filter((key) => !isNaN(key))
-            .map((key) => (
-              <div key={key} className="image-card">
-                <img src={result.slides[key].url} alt={`Slide ${key}`} />
-                <a href={result.slides[key].url} target="_blank" rel="noreferrer">
-                  <button className="btn-mini-download">Save Photo</button>
-                </a>
-              </div>
-            ))}
-        </div>
-      </div>
+      /* JIKA PHOTO MODE (TYPE 3) */
+      (() => {
+        const slideKeys = Object.keys(result.slides).filter(key => !isNaN(key));
+        
+        if (slideKeys.length === 1) {
+          // JIKA HANYA 1 FOTO: Tampilkan besar seperti video
+          return (
+            <div className="video-container">
+              <img 
+                src={result.slides["0"].url} 
+                className="video-preview" 
+                alt="TikTok Photo" 
+              />
+            </div>
+          );
+        } else {
+          // JIKA LEBIH DARI 1 FOTO: Tampilkan Grid
+          return (
+            <div className="image-grid">
+              {slideKeys.map((key) => (
+                <div key={key} className="image-card">
+                  <img src={result.slides[key].url} alt={`Slide ${key}`} />
+                  <a href={result.slides[key].url} target="_blank" rel="noreferrer">
+                    <button className="btn-mini-download">Save Photo</button>
+                  </a>
+                </div>
+              ))}
+            </div>
+          );
+        }
+      })()
     ) : (
+      /* JIKA VIDEO MODE */
       <div className="video-container">
         <video 
           key={result.no_watermark_link} 
           className="video-preview" 
           controls 
+          preload="metadata"
           src={result.no_watermark_link} 
         />
       </div>
     )}
 
-    {/* BAGIAN 2: CAPTION / TEXT (TEPAT DI BAWAH MEDIA) */}
+    {/* TEXT CAPTION */}
     {result.text && <p className="description">{result.text}</p>}
 
-    {/* BAGIAN 3: STATISTIK */}
+    {/* STATS */}
     <div className="stats">
-      <div className="stat">❤️ {result.like_count}</div>
-      <div className="stat">💬 {result.comment_count}</div>
-      <div className="stat">🔁 {result.share_count}</div>
+      <div className="stat"><span>❤️</span> {result.like_count}</div>
+      <div className="stat"><span>💬</span> {result.comment_count}</div>
+      <div className="stat"><span>🔁</span> {result.share_count}</div>
     </div>
 
-    {/* BAGIAN 4: TOMBOL AKSI (DINAMIS) */}
+    {/* TOMBOL DOWNLOAD UTAMA */}
     <div className="button-group">
-      {/* Tombol Video HD HANYA muncul jika BUKAN tipe 3 (Gambar) */}
+      {/* Tombol Download Video (Hanya muncul jika bukan Foto) */}
       {result.type !== 3 && result.no_watermark_link_hd && (
-        <a href={result.no_watermark_link_hd} target="_blank" rel="noreferrer">
+        <a href={result.no_watermark_link_hd} target="_blank" rel="noreferrer" style={{flex: 1}}>
           <button className="btn-download video">Download Video HD</button>
         </a>
       )}
 
-      {/* Tombol Musik muncul untuk Video maupun Gambar */}
-      {result.music_link && (
-        <a href={result.music_link} target="_blank" rel="noreferrer">
-          <button className="btn-download music">Download Music</button>
+      {/* Tombol Download Photo (Hanya muncul jika fotonya cuma 1) */}
+      {result.type === 3 && Object.keys(result.slides).filter(key => !isNaN(key)).length === 1 && (
+        <a href={result.slides["0"].url} target="_blank" rel="noreferrer" style={{flex: 1}}>
+          <button className="btn-download video">Download Photo</button>
         </a>
       )}
+
+      {/* Tombol Music (Selalu muncul) */}
+      <a href={result.music_link} target="_blank" rel="noreferrer" style={{flex: 1}}>
+        <button className="btn-download music">Download Music</button>
+      </a>
     </div>
   </div>
 )}
