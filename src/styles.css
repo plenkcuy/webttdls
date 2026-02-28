@@ -170,6 +170,47 @@
 .btn-download.video { background: #4444ff; }
 .btn-download.music { background: #ff4db8; }
 
+/* Container untuk membungkus semua gambar */
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
+  max-height: 350px; /* Batasi tinggi agar tidak terlalu panjang */
+  overflow-y: auto;  /* Tambahkan scroll jika gambar banyak */
+  padding: 10px;
+  background: var(--input-bg);
+  border-radius: 12px;
+}
+
+/* Item gambar individu */
+.image-item {
+  position: relative;
+  aspect-ratio: 9 / 16;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.image-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Tombol kecil di atas gambar */
+.btn-download-img {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  font-size: 11px;
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 /* SKELETON ANIMATION */
 .skeleton { animation: pulse 1.5s infinite; }
 .skeleton-video { height: 250px; background: var(--input-bg); border-radius: 12px; margin-bottom: 15px; }
