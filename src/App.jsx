@@ -165,26 +165,24 @@ function App() {
 
     {/* TOMBOL DOWNLOAD UTAMA */}
     <div className="button-group">
-      {/* Tombol Download Video (Hanya muncul jika bukan Foto) */}
-      {result.type !== 3 && result.no_watermark_link_hd && (
-        <a href={result.no_watermark_link_hd} target="_blank" rel="noreferrer" style={{flex: 1}}>
-          <button className="btn-download video">Download Video HD</button>
-        </a>
-      )}
+  {/* TOMBOL 1: DOWNLOAD VIDEO ATAU PHOTO (Hanya muncul jika bukan grid foto) */}
+  {result.type !== 3 || (result.type === 3 && Object.keys(result.slides).filter(k => !isNaN(k)).length === 1) ? (
+    <a href={result.type === 3 ? result.slides["0"].url : result.no_watermark_link_hd} target="_blank" rel="noreferrer">
+      <button className="btn-download video">
+        {result.type === 3 ? "📸 Photo" : "📹 Video"}
+      </button>
+    </a>
+  ) : null}
 
-      {/* Tombol Download Photo (Hanya muncul jika fotonya cuma 1) */}
-      {result.type === 3 && Object.keys(result.slides).filter(key => !isNaN(key)).length === 1 && (
-        <a href={result.slides["0"].url} target="_blank" rel="noreferrer" style={{flex: 1}}>
-          <button className="btn-download video">Download Photo</button>
-        </a>
-      )}
-
-      {/* Tombol Music (Selalu muncul) */}
-      <a href={result.music_link} target="_blank" rel="noreferrer" style={{flex: 1}}>
-        <button className="btn-download music">Download Music</button>
-      </a>
-    </div>
-  </div>
+  {/* TOMBOL 2: DOWNLOAD MUSIC (Selalu muncul) */}
+  {result.music_link && (
+    <a href={result.music_link} target="_blank" rel="noreferrer">
+      <button className="btn-download music">
+        🎵 Music
+      </button>
+    </a>
+  )}
+</div>
 )}
 
         {error && (
