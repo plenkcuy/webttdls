@@ -6,10 +6,15 @@ function App() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
-  // Ambil tema dari storage atau default ke dark
-  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
 
-  // Simpan tema ke localStorage setiap kali berubah
+  // 1. Inisialisasi tema yang aman untuk build Vercel/SSR
+  const [theme, setTheme] = useState(() => {
+    if (typeof window !== "undefined") {
+      return localStorage.getItem("theme") || "dark";
+    }
+    return "dark";
+  });
+
   useEffect(() => {
     localStorage.setItem("theme", theme);
   }, [theme]);
@@ -20,41 +25,41 @@ function App() {
     return regex.test(link);
   };
 
-  // AUTO PASTE DETECTION
-  // --- CARA YANG BENAR ---
-useEffect(() => {
-  // Buat fungsi async di DALAM useEffect
-  const autoPaste = async () => {
-    try {
-      // Sekarang 'await' aman digunakan di sini
-      const text = await navigator.clipboard.readText();
-      if (text && isValidTikTok(text)) {
-        setUrl(text);
+  // 2. Auto Paste Detection (Aman dari 'await' error)
+  useEffect(() => {
+    const autoPaste = async () => {
+      try {
+        const text = await navigator.clipboard.readText();
+        if (text && isValidTikTok(text)) {
+          setUrl(text);
+        }
+      } catch (err) {
+        // Abaikan jika permission ditolak
       }
+    };
+    autoPaste();
+  }, []);
+
+  const handlePaste = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      setUrl(text);
     } catch (err) {
-      // Abaikan jika user belum berinteraksi atau permission ditolak
+      console.error("Gagal membaca clipboard");
     }
   };
 
-  autoPaste();
-}, []); // Dependency array kosong agar jalan 1x saat load
-
-  const handlePaste = async () => {
-  try {
-    const text = await navigator.clipboard.readText();
-    setUrl(text);
-  } catch (err) {
-    console.error("Gagal membaca clipboard");
-  }
-};
-
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  setError("");
-  setResult(null);
-    
-    setLoading(true);
+    e.preventDefault();
+    setError("");
+    setResult(null);
 
+    if (!isValidTikTok(url)) {
+      setError("Link bukan URL TikTok yang valid.");
+      return;
+    }
+
+    setLoading(true);
     try {
       const response = await fetch(
         `https://api.siputzx.my.id/api/d/tiktok/v2?url=${encodeURIComponent(url)}`
@@ -70,9 +75,47 @@ useEffect(() => {
     }
   };
 
+  // 3. Fungsi Render Media agar JSX lebih rapi
+  const renderMedia = () => {
+    if (result.type === 3) {
+      const slideKeys = Object.keys(result.slides).filter((key) => !isNaN(key));
+      
+      if (slideKeys.length === 1) {
+        return (
+          <div className="video-container">
+            <img src={result.slides["0"].url} className="video-preview" alt="TikTok Photo" />
+          </div>
+        );
+      }
+      return (
+        <div className="image-grid">
+          {slideKeys.map((key) => (
+            <div key={key} className="image-card">
+              <img src={result.slides[key].url} alt={`Slide ${key}`} />
+              <a href={result.slides[key].url} target="_blank" rel="noreferrer">
+                <button className="btn-mini-download">Save Photo</button>
+              </a>
+            </div>
+          ))}
+        </div>
+      );
+    }
+
+    return (
+      <div className="video-container">
+        <video 
+          key={result.no_watermark_link} 
+          className="video-preview" 
+          controls 
+          preload="metadata"
+          src={result.no_watermark_link} 
+        />
+      </div>
+    );
+  };
+
   return (
     <main className={`wrapper ${theme}`}>
-      {/* TEMA TOGGLE */}
       <div className="theme-toggle">
         <button onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
           {theme === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode"}
@@ -85,124 +128,72 @@ useEffect(() => {
           <p className="subtitle">Download video tanpa watermark dengan cepat</p>
 
           <form onSubmit={handleSubmit} className="download-form">
-  <div className="input-group">
-    {/* 1. INPUT DI KIRI */}
-    <input
-      type="text"
-      placeholder="Paste link TikTok di sini..."
-      value={url}
-      onChange={(e) => setUrl(e.target.value)}
-      required
-    />
-    
-    {/* 2. PASTE DI TENGAH/SEBELUM CONVERT */}
-    <button type="button" className="btn-paste" onClick={handlePaste}>
-      📋 Paste
-    </button>
-    
-    {/* 3. CONVERT DI KANAN */}
-    <button type="submit" className="btn-primary">
-      Convert
-    </button>
-  </div>
-</form>
+            <div className="input-group">
+              <input
+                type="text"
+                placeholder="Paste link TikTok di sini..."
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                required
+              />
+              <button type="button" className="btn-paste" onClick={handlePaste}>
+                📋 Paste
+              </button>
+              <button type="submit" className="btn-primary">
+                Convert
+              </button>
+            </div>
+          </form>
         </div>
       </section>
 
-
-      
       <section className="result-section">
-        {/* LOADING SKELETON */}
         {loading && (
           <div className="result-card skeleton">
             <div className="skeleton-video"></div>
             <div className="skeleton-stats"></div>
-            <div className="skeleton-stats" style={{ width: "60%" }}></div>
           </div>
         )}
 
-        {/* HASIL DOWNLOAD */}
         {result && !loading && (
-  <div className="result-card success">
-    
-    {/* LOGIKA MEDIA UTAMA */}
-    {result.type === 3 ? (
-      /* JIKA PHOTO MODE (TYPE 3) */
-      (() => {
-        const slideKeys = Object.keys(result.slides).filter(key => !isNaN(key));
-        
-        if (slideKeys.length === 1) {
-          // JIKA HANYA 1 FOTO: Tampilkan besar seperti video
-          return (
-            <div className="video-container">
-              <img 
-                src={result.slides["0"].url} 
-                className="video-preview" 
-                alt="TikTok Photo" 
-              />
+          <div className="result-card success">
+            {/* Render Media menggunakan Fungsi di atas */}
+            {renderMedia()}
+
+            {result.text && <p className="description">{result.text}</p>}
+
+            <div className="stats">
+              <div className="stat"><span>❤️</span> {result.like_count}</div>
+              <div className="stat"><span>💬</span> {result.comment_count}</div>
+              <div className="stat"><span>🔁</span> {result.share_count}</div>
             </div>
-          );
-        } else {
-          // JIKA LEBIH DARI 1 FOTO: Tampilkan Grid
-          return (
-            <div className="image-grid">
-              {slideKeys.map((key) => (
-                <div key={key} className="image-card">
-                  <img src={result.slides[key].url} alt={`Slide ${key}`} />
-                  <a href={result.slides[key].url} target="_blank" rel="noreferrer">
-                    <button className="btn-mini-download">Save Photo</button>
-                  </a>
-                </div>
-              ))}
+
+            <div className="button-group">
+              {/* Tombol Utama Dinamis */}
+              {(() => {
+                const slideKeys = result.type === 3 ? Object.keys(result.slides).filter(k => !isNaN(k)) : [];
+                const isSinglePhoto = result.type === 3 && slideKeys.length === 1;
+                
+                if (result.type !== 3 || isSinglePhoto) {
+                  return (
+                    <a href={isSinglePhoto ? result.slides["0"].url : result.no_watermark_link_hd} target="_blank" rel="noreferrer">
+                      <button className="btn-download video">
+                        {isSinglePhoto ? "📸 Photo" : "📹 Video"}
+                      </button>
+                    </a>
+                  );
+                }
+                return null;
+              })()}
+
+              {result.music_link && (
+                <a href={result.music_link} target="_blank" rel="noreferrer">
+                  <button className="btn-download music">🎵 Music</button>
+                </a>
+              )}
             </div>
-          );
-        }
-      })()
-    ) : (
-      /* JIKA VIDEO MODE */
-      <div className="video-container">
-        <video 
-          key={result.no_watermark_link} 
-          className="video-preview" 
-          controls 
-          preload="metadata"
-          src={result.no_watermark_link} 
-        />
-      </div>
-    )}
-
-    {/* TEXT CAPTION */}
-    {result.text && <p className="description">{result.text}</p>}
-
-    {/* STATS */}
-    <div className="stats">
-      <div className="stat"><span>❤️</span> {result.like_count}</div>
-      <div className="stat"><span>💬</span> {result.comment_count}</div>
-      <div className="stat"><span>🔁</span> {result.share_count}</div>
-    </div>
-
-    {/* TOMBOL DOWNLOAD UTAMA */}
-    <div className="button-group">
-  {/* TOMBOL 1: DOWNLOAD VIDEO ATAU PHOTO (Hanya muncul jika bukan grid foto) */}
-  {result.type !== 3 || (result.type === 3 && Object.keys(result.slides).filter(k => !isNaN(k)).length === 1) ? (
-    <a href={result.type === 3 ? result.slides["0"].url : result.no_watermark_link_hd} target="_blank" rel="noreferrer">
-      <button className="btn-download video">
-        {result.type === 3 ? "📸 Photo" : "📹 Video"}
-      </button>
-    </a>
-  ) : null}
-
-  {/* TOMBOL 2: DOWNLOAD MUSIC (Selalu muncul) */}
-  {result.music_link && (
-    <a href={result.music_link} target="_blank" rel="noreferrer">
-      <button className="btn-download music">
-        🎵 Music
-      </button>
-    </a>
-  )}
-</div>
-  </div>
-)}
+          </div>
+        )}
 
         {error && (
           <div className="result-card error">
@@ -210,7 +201,7 @@ useEffect(() => {
           </div>
         )}
       </section>
-      
+
       <footer className="footer">
         <p className="creator-text">Creator: apx.co</p>
       </footer>
