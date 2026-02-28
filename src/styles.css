@@ -215,6 +215,9 @@
   flex-wrap: wrap;
 }
 
+.btn-download.video { background: #4444ff; }
+.btn-download.music { background: #ff4db8; }
+
 /* Footer tetap kokoh di bawah */
 .footer {
   margin-top: 50px;
