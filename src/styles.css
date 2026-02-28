@@ -202,8 +202,13 @@
 .video-preview {
   width: 100%;
   max-width: 280px;
-  border-radius: 12px;
+  aspect-ratio: 9 / 16; /* Menjaga bentuk portrait TikTok */
+  object-fit: cover;    /* Foto tidak akan gepeng */
+  border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  background: #000;
+  display: block;
+  margin: 0 auto;
 }
 
 /* Container Statistik */
