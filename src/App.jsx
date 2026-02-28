@@ -122,18 +122,21 @@ function App() {
             </a>
           </div>
         ))}
+      <div>
+        <p className="description">{result.text}</p>
+      </div>
     </div>
   </div>
 ) : (
-            <>
-            <p className="description">{result.text}</p>
+            <div className="video-container">
             <video key={result.no_watermark_link} // Menjamin elemen di-refresh total
               className="video-preview"
               controls
               preload="metadata" // Agar tidak mendownload seluruh file HD di awal
               src={result.no_watermark_link}
               />
-            </>
+            <p className="description">{result.text}</p>
+      </div>
             )}
             
             <div className="stats">
