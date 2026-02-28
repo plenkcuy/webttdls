@@ -45,7 +45,7 @@ Kalo projek ini ngebantu kamu atau kamu suka dengan konsep *Vibe Coding* ini, bo
   <table>
     <tr>
       <td align="center">
-        <b>QRIS / DANA / OVO</b><br><br>
+        <b>QRIS</b><br><br>
         <img src="./public/qris.jpg" alt="QRIS Saweria" width="250" onerror="this.src='https://via.placeholder.com/250x300?text=SCAN+QRIS+DISINI'"><br>
         <i>Scan QR di atas buat kasih saweran</i>
       </td>
