@@ -206,17 +206,58 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Jarak antar tombol agar tidak menempel */
-.button-group {
+/* Styling Dasar Tombol Download */
+.btn-download {
+  flex: 1; /* Agar tombol berbagi ruang secara adil */
+  min-width: 160px;
+  padding: 14px 24px;
+  border-radius: 50px; /* Membuatnya bulat sempurna di ujung */
+  border: none;
+  cursor: pointer;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600; /* Tulisan lebih tebal */
+  font-size: 14px;
+  color: white;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
-  gap: 12px;
+  align-items: center;
   justify-content: center;
-  margin-top: 20px;
-  flex-wrap: wrap;
+  gap: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Memberikan efek kedalaman */
 }
 
-.btn-download.video { background: #4444ff; }
-.btn-download.music { background: #ff4db8; }
+/* Warna Spesifik Video */
+.btn-download.video {
+  background: linear-gradient(135deg, #4444ff, #5f5fff);
+}
+
+/* Warna Spesifik Music */
+.btn-download.music {
+  background: linear-gradient(135deg, #ff4db8, #ff71ce);
+}
+
+/* Efek Hover (Saat kursor di atas tombol) */
+.btn-download:hover {
+  transform: translateY(-3px); /* Tombol sedikit naik */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  filter: brightness(1.1); /* Sedikit lebih terang */
+}
+
+.btn-download:active {
+  transform: translateY(0); /* Kembali ke posisi semula saat diklik */
+}
+
+/* Container tombol agar rapi */
+.button-group {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  margin-top: 25px;
+  width: 100%;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 /* Footer tetap kokoh di bawah */
 .footer {
