@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
 
 * {
   margin: 0;
@@ -25,8 +25,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px 20px 40px 20px;
-  /* Efek Animasi Lampu */
+  padding: 40px 20px;
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -59,309 +58,207 @@
   transition: all 0.3s ease;
 }
 
-.theme-toggle button:hover {
-  transform: translateY(-2px);
-}
-
 /* HERO & CARDS */
-.hero {
+.hero, .result-section {
   width: 100%;
-  max-width: 600px;
+  max-width: 550px;
   margin-bottom: 30px;
 }
 
 .hero-card, .result-card {
-  padding: 35px;
-  border-radius: 16px;
+  padding: 30px;
+  border-radius: 24px;
   background: var(--card-bg);
   border: 1px solid var(--card-border);
   text-align: center;
-  backdrop-filter: blur(10px);
-  transition: background 0.5s ease, border 0.5s ease;
+  backdrop-filter: blur(15px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
 .title {
-  font-size: 26px;
+  font-size: 28px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
 .subtitle {
   color: var(--text-dim);
+  font-size: 14px;
   margin-bottom: 25px;
 }
 
+/* INPUT GROUP - PERBAIKAN UTAMA */
 .input-group {
   display: flex;
   align-items: center;
-  background: rgba(255, 255, 255, 0.05); /* Transparan gelap */
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50px; /* Membuat bentuk kapsul */
-  padding: 8px 10px;
-  gap: 10px;
-  width: 100%;
-  max-width: 600px;
-  margin: 0 auto;
+  background: var(--input-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 50px;
+  padding: 6px 6px 6px 15px; /* Spasi dalam bar */
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.input-group:focus-within {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(95, 95, 255, 0.2);
 }
 
 .input-group input {
-  flex: 1; /* Mengambil sisa ruang kosong */
+  flex: 1;
   background: transparent;
   border: none;
   outline: none;
-  color: white;
-  padding: 10px 15px;
-  font-size: 15px;
+  color: var(--text-main);
+  font-size: 14px;
+  width: 100%;
 }
 
-/* Tombol Paste Kecil di dalam bar */
 .btn-paste {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(128, 128, 128, 0.15);
+  color: var(--text-main);
   border: none;
-  color: white;
-  padding: 8px 15px;
+  padding: 8px 16px;
   border-radius: 20px;
   font-size: 12px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: 0.3s;
-}
-
-.btn-paste:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-/* Tombol Convert di paling kanan */
-.btn-primary {
-  background: #5f5fff; /* Warna biru sesuai gambar kamu */
-  color: white;
-  border: none;
-  padding: 10px 25px;
-  border-radius: 30px;
   font-weight: 600;
   cursor: pointer;
+  white-space: nowrap;
+  transition: 0.2s;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
   transition: 0.3s;
 }
 
-.btn-primary:hover {
-  background: #4444ff;
-  transform: scale(1.05);
-}
-
-/* RESULT SECTION */
-.result-section {
+/* MEDIA CONTENT */
+.video-preview {
   width: 100%;
-  max-width: 600px;
+  max-width: 280px;
+  border-radius: 18px;
+  aspect-ratio: 9/16;
+  object-fit: cover;
+  background: #000;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
 }
 
-/* Styling Deskripsi/Caption */
-.description {
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 15px 0; /* Jarak atas ke media, jarak bawah ke stats */
-  text-align: center;
-  color: var(--text-main);
-  opacity: 0.9;
-  word-wrap: break-word;
-  padding: 0 15px;
-  font-weight: 400;
-}
-
-/* Container Foto */
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 15px;
-  margin: 20px 0;
-  max-height: 450px;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 12px;
+  max-height: 400px;
   overflow-y: auto;
-  padding-right: 10px;
-}
-
-/* Scrollbar tipis agar tetap elegan */
-.image-grid::-webkit-scrollbar {
-  width: 5px;
-}
-.image-grid::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 10px;
+  padding: 10px;
 }
 
 .image-card {
   position: relative;
   border-radius: 12px;
   overflow: hidden;
-  background: var(--input-bg);
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 1/1;
+  border: 1px solid var(--card-border);
 }
 
 .image-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100%; height: 100%; object-fit: cover;
 }
 
-.btn-mini-download {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 10px;
-  backdrop-filter: blur(4px);
-  cursor: pointer;
-}
-
-/* Container Video agar konsisten */
-.video-container {
-  width: 100%;
+/* BUTTON GROUP - PERBAIKAN POSISI */
+.button-group {
   display: flex;
-  justify-content: center;
-  margin-bottom: 5px;
-}
-
-.video-preview {
+  gap: 12px;
+  margin-top: 25px;
   width: 100%;
-  max-width: 280px;
-  aspect-ratio: 9 / 16; /* Menjaga bentuk portrait TikTok */
-  object-fit: cover;    /* Foto tidak akan gepeng */
-  border-radius: 15px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  background: #000;
-  display: block;
-  margin: 0 auto;
 }
 
-/* Container Statistik */
+.button-group a {
+  flex: 1;
+  text-decoration: none;
+}
+
+.btn-download {
+  width: 100%;
+  padding: 14px;
+  border-radius: 16px;
+  border: none;
+  font-weight: 600;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: 0.3s;
+}
+
+.btn-download.video { background: linear-gradient(45deg, #4444ff, #8a8aff); }
+.btn-download.music { background: linear-gradient(45deg, #ff4db8, #ff8ada); }
+
+/* STATS */
 .stats {
   display: flex;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   margin: 20px 0;
-  flex-wrap: wrap;
 }
 
-/* Item Statistik Individu (Like, Comment, Share) */
 .stat {
-  padding: 8px 16px;
-  border-radius: 30px; /* Bentuk kapsul */
-  background: var(--input-bg); /* Mengikuti warna tema */
-  color: var(--text-main);
-  font-size: 14px;
-  font-weight: 600;
+  padding: 6px 14px;
+  background: var(--input-bg);
   border: 1px solid var(--card-border);
-  display: flex;
-  align-items: center;
-  gap: 8px; /* Jarak antara emoji dan angka */
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-}
-
-/* Efek saat kursor di atas stat */
-.stat:hover {
-  transform: translateY(-2px);
-  background: var(--card-bg);
-  border-color: var(--accent);
-}
-
-/* Styling Dasar Tombol Download */
-/* Container Utama Tombol */
-.button-group {
-  display: flex;
-  flex-direction: row; /* Selalu berjejer ke samping */
-  gap: 10px;           /* Jarak antar tombol */
-  width: 100%;
-  max-width: 400px;    /* Batas lebar maksimal agar tidak terlalu lebar di PC */
-  margin: 25px auto 0 auto;
-  padding: 0 10px;     /* Spasi sisi kiri-kanan */
-}
-
-/* Wrapper Link (PENTING: Ini yang mengontrol ukuran) */
-.button-group a {
-  flex: 1;             /* Membagi ruang sama rata (50/50 atau 100%) */
-  text-decoration: none;
-  display: block;
-}
-
-/* Styling Tombolnya */
-.btn-download {
-  width: 100%;         /* WAJIB: Agar tombol memenuhi ruang tag <a> */
-  padding: 12px 10px;  /* Padding atas-bawah 12px */
   border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  font-family: 'Poppins', sans-serif;
+  font-size: 12px;
   font-weight: 600;
-  font-size: 13px;     /* Ukuran font sedikit dikecilkan agar muat di HP kecil */
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  white-space: nowrap; /* Teks tidak boleh turun ke bawah */
 }
 
-/* Warna */
-.btn-download.video { background: linear-gradient(135deg, #4444ff, #5f5fff); }
-.btn-download.music { background: linear-gradient(135deg, #ff4db8, #ff71ce); }
-
-.btn-download:hover { transform: translateY(-2px); filter: brightness(1.1); }
-
-.btn-download:active {
-  transform: translateY(0); /* Kembali ke posisi semula saat diklik */
-}
-
-/* Container tombol agar rapi */
-.button-group {
-  display: flex;
-  gap: 15px;
-  justify-content: center;
-  margin-top: 25px;
-  width: 100%;
-  max-width: 500px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Footer tetap kokoh di bawah */
+/* FOOTER */
 .footer {
-  margin-top: 50px;
-  padding: 20px 0;
-  text-align: center;
+  margin-top: auto;
+  padding: 40px 0;
 }
 
 .creator-text {
-  font-size: 20px;
+  font-size: 14px;
   font-weight: 800;
-  letter-spacing: 5px;
+  letter-spacing: 4px;
   text-transform: uppercase;
-  color: var(--text-main);
-  opacity: 0.6;
+  color: var(--text-dim);
+  transition: 0.4s;
 }
 
-.creator-text:hover {
-  opacity: 1;
-  color: var(--accent);
-  letter-spacing: 8px; /* Efek melebar saat di-hover */
+/* FIXING MOBILE VIEW - INI YANG BIKIN ERROR SEBELUMNYA */
+@media (max-width: 480px) {
+  .input-group {
+    /* Jangan gunakan flex-direction: column di sini agar tetap satu baris */
+    padding: 5px 5px 5px 12px;
+  }
+  
+  .btn-primary {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+
+  .btn-paste {
+    padding: 8px 10px;
+    font-size: 11px;
+  }
+
+  .button-group {
+    flex-direction: column; /* Tombol download boleh menumpuk di HP */
+  }
 }
 
-/* SKELETON ANIMATION */
+/* ANIMATIONS */
 .skeleton { animation: pulse 1.5s infinite; }
-.skeleton-video { height: 250px; background: var(--input-bg); border-radius: 12px; margin-bottom: 15px; }
-.skeleton-stats { height: 20px; background: var(--input-bg); margin: 10px auto; width: 80%; }
-
 @keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
-}
-
-@media(max-width:768px) {
-  .input-group { flex-direction: column; }
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
 }
