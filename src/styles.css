@@ -243,9 +243,14 @@
 
 .description {
   font-size: 14px;
-  margin-bottom: 15px;
+  line-height: 1.5;
+  margin-top: 15px; /* Memberi jarak dari video/gambar di atasnya */
+  margin-bottom: 20px; /* Memberi jarak ke bagian stats di bawahnya */
+  text-align: center;
+  color: var(--text-main);
   opacity: 0.9;
-  line-height: 1.4;
+  word-wrap: break-word; /* Agar hashtag panjang tidak merusak layout */
+  padding: 0 10px;
 }
 
 /* SKELETON ANIMATION */
