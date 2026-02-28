@@ -129,110 +129,57 @@
   max-width: 600px;
 }
 
+/* Styling Deskripsi/Caption */
+.description {
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 15px 0; /* Jarak atas ke media, jarak bawah ke stats */
+  text-align: center;
+  color: var(--text-main);
+  opacity: 0.9;
+  word-wrap: break-word;
+  padding: 0 15px;
+  font-weight: 400;
+}
+
+/* Container Video agar konsisten */
+.video-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
 .video-preview {
   width: 100%;
-  max-width: 260px;
+  max-width: 280px;
   border-radius: 12px;
-  margin-bottom: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-.stats {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 20px;
-}
-
-.stat {
-  padding: 6px 15px;
-  border-radius: 20px;
-  background: var(--input-bg);
-  font-size: 13px;
-  color: var(--text-main);
-}
-
+/* Jarak antar tombol agar tidak menempel */
 .button-group {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
 }
 
-.btn-download {
-  padding: 12px 20px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  color: white;
-  font-weight: 600;
-}
-
-.btn-download.video { background: #4444ff; }
-.btn-download.music { background: #ff4db8; }
-
-/* Container Foto */
-.image-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 15px;
-  margin: 20px 0;
-  max-height: 450px;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-
-/* Scrollbar tipis agar tetap elegan */
-.image-grid::-webkit-scrollbar {
-  width: 5px;
-}
-.image-grid::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 10px;
-}
-
-.image-card {
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  background: var(--input-bg);
-  aspect-ratio: 3 / 4;
-}
-
-.image-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.btn-mini-download {
-  position: absolute;
-  bottom: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 10px;
-  backdrop-filter: blur(4px);
-  cursor: pointer;
-}
-
-/* TEXT CREATOR (SESUAI REQUEST: BESAR & ELEGAN) */
+/* Footer tetap kokoh di bawah */
 .footer {
-  margin-top: 50px; /* Jarak pas, tidak terlalu bawah */
-  padding-bottom: 30px;
+  margin-top: 50px;
+  padding: 20px 0;
+  text-align: center;
 }
 
 .creator-text {
-  font-size: 22px; /* Lebih besar */
-  font-weight: 800; /* Tebal/Extra Bold */
-  letter-spacing: 6px; /* Spasi antar huruf lebar agar mewah */
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: 5px;
   text-transform: uppercase;
   color: var(--text-main);
-  opacity: 0.7;
-  transition: 0.3s;
+  opacity: 0.6;
 }
 
 .creator-text:hover {
