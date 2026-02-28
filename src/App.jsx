@@ -22,28 +22,42 @@ function App() {
 
   // AUTO PASTE DETECTION
   useEffect(() => {
-    const getClipboard = async () => {
+    const autoPaste = async () => {
       try {
-        const text = await navigator.clipboard.readText();
-        if (isValidTikTok(text)) {
-          setUrl(text);
+        // Cek status izin clipboard dahulu (opsional namun disarankan)
+        const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
+        const permissionStatus = await navigator.permissions.query(queryOpts);
+
+        if (permissionStatus.state === 'granted' || permissionStatus.state === 'prompt') {
+          const text = await navigator.clipboard.readText();
+          if (isValidTikTok(text)) {
+            setUrl(text);
+          }
         }
       } catch (err) {
-        // Abaikan jika permission ditolak
+        // Gagal auto-paste biasanya karena user belum berinteraksi dengan halaman
       }
     };
-    getClipboard();
+
+    // Jalankan setelah sedikit delay agar browser siap
+    const timer = setTimeout(autoPaste, 1000);
+    return () => clearTimeout(timer);
   }, []);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setResult(null);
-
-    if (!isValidTikTok(url)) {
-      setError("Link bukan URL TikTok yang valid.");
-      return;
+  const handlePaste = async () => {
+    try {
+      const text = await navigator.clipboard.readText();
+      if (text) {
+        setUrl(text);
+        // Opsional: Langsung trigger convert jika link valid
+        if (isValidTikTok(text)) {
+          // Kamu bisa memanggil handleSubmit di sini jika ingin auto-convert
+        }
+      }
+    } catch (err) {
+      console.error("Gagal membaca clipboard:", err);
     }
+  };
 
     setLoading(true);
 
@@ -85,6 +99,14 @@ function App() {
                 onChange={(e) => setUrl(e.target.value)}
                 required
               />
+              <button 
+                type="button" 
+                className="btn-paste" 
+                onClick={handlePaste}
+                title="Tempel dari Clipboard"
+              >
+                📋 Paste
+              </button>
               <button type="submit" className="btn-primary">
                 Convert
               </button>
@@ -93,6 +115,8 @@ function App() {
         </div>
       </section>
 
+
+      
       <section className="result-section">
         {/* LOADING SKELETON */}
         {loading && (
