@@ -105,56 +105,63 @@ function App() {
 
         {/* HASIL DOWNLOAD */}
         {result && !loading && (
-          <div className="result-card success">
-            
-            {result.type === 3 ? (
-  <div className="slides-container">
-    <p className="description">{result.text}</p>
+  <div className="result-card success">
     
-    <div className="image-grid">
-      {Object.keys(result.slides)
-        .filter((key) => !isNaN(key)) // Mengambil hanya kunci angka ("0", "1", dst)
-        .map((key) => (
-          <div key={key} className="image-card">
-            <img src={result.slides[key].url} alt={`Slide ${key}`} />
-            <a href={result.slides[key].url} target="_blank" rel="noreferrer">
-              <button className="btn-mini-download">Save Photo</button>
-            </a>
-          </div>
-        ))}
-      <div>
-        <p className="description">{result.text}</p>
+    {/* BAGIAN 1: MEDIA (GAMBAR ATAU VIDEO) */}
+    {result.type === 3 ? (
+      <div className="slides-container">
+        <div className="image-grid">
+          {Object.keys(result.slides)
+            .filter((key) => !isNaN(key))
+            .map((key) => (
+              <div key={key} className="image-card">
+                <img src={result.slides[key].url} alt={`Slide ${key}`} />
+                <a href={result.slides[key].url} target="_blank" rel="noreferrer">
+                  <button className="btn-mini-download">Save Photo</button>
+                </a>
+              </div>
+            ))}
+        </div>
       </div>
+    ) : (
+      <div className="video-container">
+        <video 
+          key={result.no_watermark_link} 
+          className="video-preview" 
+          controls 
+          src={result.no_watermark_link} 
+        />
+      </div>
+    )}
+
+    {/* BAGIAN 2: CAPTION / TEXT (TEPAT DI BAWAH MEDIA) */}
+    {result.text && <p className="description">{result.text}</p>}
+
+    {/* BAGIAN 3: STATISTIK */}
+    <div className="stats">
+      <div className="stat">❤️ {result.like_count}</div>
+      <div className="stat">💬 {result.comment_count}</div>
+      <div className="stat">🔁 {result.share_count}</div>
+    </div>
+
+    {/* BAGIAN 4: TOMBOL AKSI (DINAMIS) */}
+    <div className="button-group">
+      {/* Tombol Video HD HANYA muncul jika BUKAN tipe 3 (Gambar) */}
+      {result.type !== 3 && result.no_watermark_link_hd && (
+        <a href={result.no_watermark_link_hd} target="_blank" rel="noreferrer">
+          <button className="btn-download video">Download Video HD</button>
+        </a>
+      )}
+
+      {/* Tombol Musik muncul untuk Video maupun Gambar */}
+      {result.music_link && (
+        <a href={result.music_link} target="_blank" rel="noreferrer">
+          <button className="btn-download music">Download Music</button>
+        </a>
+      )}
     </div>
   </div>
-) : (
-            <div className="video-container">
-            <video key={result.no_watermark_link} // Menjamin elemen di-refresh total
-              className="video-preview"
-              controls
-              preload="metadata" // Agar tidak mendownload seluruh file HD di awal
-              src={result.no_watermark_link}
-              />
-            <p className="description">{result.text}</p>
-      </div>
-            )}
-            
-            <div className="stats">
-              <div className="stat">❤️ {result.like_count}</div>
-              <div className="stat">💬 {result.comment_count}</div>
-              <div className="stat">🔁 {result.share_count}</div>
-            </div>
-
-            <div className="button-group">
-              <a href={result.no_watermark_link_hd} target="_blank" rel="noreferrer">
-                <button className="btn-download video">Video HD</button>
-              </a>
-              <a href={result.music_link} target="_blank" rel="noreferrer">
-                <button className="btn-download music">Music MP3</button>
-              </a>
-            </div>
-          </div>
-        )}
+)}
 
         {error && (
           <div className="result-card error">
