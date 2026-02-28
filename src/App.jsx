@@ -106,30 +106,37 @@ function App() {
         {/* HASIL DOWNLOAD */}
         {result && !loading && (
           <div className="result-card success">
-            {result.images && result.images.length > 0 ? (
-              <div className="image-container">
-                <h3>📸 {result.images.length} Photos Found</h3>
-                <div className="image-gallery">
-                  {result.images.map((imgUrl, index) => (
-                    <div key={index} className="image-item">
-                      <img src={imgUrl} alt={`Slide ${index}`} />
-                      <a href={imgUrl} target="_blank" rel="noreferrer">
-                        <button className="btn-download-img">Download</button>
-                      </a>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : (
+            
+            {result.type === 3 ? (
+  <div className="slides-container">
+    <p className="description">{result.text}</p>
+    
+    <div className="image-grid">
+      {Object.keys(result.slides)
+        .filter((key) => !isNaN(key)) // Mengambil hanya kunci angka ("0", "1", dst)
+        .map((key) => (
+          <div key={key} className="image-card">
+            <img src={result.slides[key].url} alt={`Slide ${key}`} />
+            <a href={result.slides[key].url} target="_blank" rel="noreferrer">
+              <button className="btn-mini-download">Save Photo</button>
+            </a>
+          </div>
+        ))}
+    </div>
+  </div>
+) : (
+            <>
+            <p className="description">{result.text}</p>
             <video key={result.no_watermark_link} // Menjamin elemen di-refresh total
               className="video-preview"
               controls
               preload="metadata" // Agar tidak mendownload seluruh file HD di awal
               src={result.no_watermark_link}
               />
-          )}
+            </>
+            )}
+            
             <div className="stats">
-              <div className="stat">{result.text}</div>
               <div className="stat">❤️ {result.like_count}</div>
               <div className="stat">💬 {result.comment_count}</div>
               <div className="stat">🔁 {result.share_count}</div>
