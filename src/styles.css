@@ -108,15 +108,55 @@
   transition: all 0.5s ease;
 }
 
-.btn-primary {
-  padding: 14px 25px;
-  border-radius: 30px;
+/* Container Input Group */
+.input-group {
+  display: flex;
+  background: var(--input-bg);
+  padding: 5px;
+  border-radius: 50px;
+  border: 1px solid var(--card-border);
+  gap: 5px;
+  align-items: center;
+}
+
+.input-group input {
+  flex: 1;
+  background: transparent;
   border: none;
+  padding: 12px 20px;
+  color: var(--text-main);
+  outline: none;
+  font-size: 14px;
+}
+
+/* Tombol Paste Khusus */
+.btn-paste {
+  background: rgba(128, 128, 128, 0.1);
+  color: var(--text-main);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 20px;
   cursor: pointer;
-  background: var(--accent);
-  color: white;
+  font-size: 12px;
   font-weight: 600;
-  transition: background 0.3s ease;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-paste:hover {
+  background: rgba(128, 128, 128, 0.2);
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  padding: 10px 25px;
+  border-radius: 50px;
+  border: none;
+  background: var(--accent); /* Warna biru/pink aksen kamu */
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
 
 .btn-primary:hover {
