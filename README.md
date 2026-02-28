@@ -2,9 +2,19 @@
 
 [![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
 [![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
-[![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+[![AI-Powered](https://img.shields.io/badge/AI--Powered-Vibe--Coding-blueviolet?style=for-the-badge&logo=openai&logoColor=white)](https://openai.com/)
 
-**The ultimate TikTok media fetcher.** Gak cuma video, tapi support download foto (slideshow) dan musik secara terpisah. UI modern, clean, dan pastinya *Sat-Set-Wat-Wet!* ⚡
+**The ultimate TikTok media fetcher.** Didesain untuk kecepatan, estetika, dan fungsionalitas tanpa batas. Gak cuma video, tapi support download foto (slideshow) dan musik secara terpisah. 
+
+---
+
+## 🤖 The "Vibe Coding" Story
+
+Projek ini dikembangkan dengan pendekatan **Modern AI-Collaborative Workflow**. Bukan sekadar *copy-paste*, tapi sebuah sinergi antara visi kreatif pengembang dan kecerdasan AI untuk mencapai efisiensi maksimal:
+
+* **🧠 Logic & Architecture**: Dirancang bersama **ChatGPT** untuk struktur state management yang solid.
+* **✨ UI/UX Refinement**: Dipoles secara presisi oleh **Gemini** untuk memastikan desain yang responsif, modern, dan fungsional di berbagai perangkat.
+* **⚡ Speed-to-Market**: Membuktikan bahwa kolaborasi manusia & AI adalah masa depan pengembangan perangkat lunak yang *high-quality* dan *fast-paced*.
 
 ---
 
@@ -13,58 +23,47 @@
 * **Video No Watermark**: Download video kualitas HD tanpa logo TikTok yang mengganggu.
 * **Photo/Slideshow Support**: Otomatis deteksi konten foto. Bisa download satu-satu atau per slide.
 * **Audio Extractor**: Cuma butuh lagunya? Bisa langsung sedot MP3-nya.
-* **Smart Auto-Paste**: Tinggal buka webnya, aplikasi bakal cek clipboard kamu secara otomatis (Safe & Secure).
-* **Dual Theme Mode**: Nyaman di mata dengan *Dark Mode* atau *Light Mode* yang estetik.
-* **Fully Responsive**: Tampilan cakep di HP maupun Monitor 4K.
+* **Smart Auto-Paste**: Fitur cerdas yang mendeteksi link TikTok di clipboard secara otomatis.
+* **Dual Theme Mode**: UI adaptif dengan Dark Mode & Light Mode yang elegan.
 
 ---
 
 ## 🛠️ Tech Stack
 
 * **Framework**: [React.js](https://reactjs.org/) (Vite)
-* **Styling**: Modern CSS3 dengan Custom Properties (Variables)
-* **API**: [Siputzx API](https://api.siputzx.my.id/)
+* **Styling**: Modern CSS3 (Custom Properties & Flexbox Master)
+* **AI Collaborators**: ChatGPT (OpenAI) & Gemini (Google)
 * **Deployment**: Vercel
 
 ---
 
-## 📸 Preview
+## 💖 Support the Project (Sawer)
+
+Kalo projek ini ngebantu kamu atau kamu suka dengan konsep *Vibe Coding* ini, boleh banget kasih apresiasi buat beli kopi biar makin semangat ngodingnya! ☕
 
 <div align="center">
-  <img src="https://via.placeholder.com/600x400?text=Preview+Image+TikTok+Downloader" alt="Preview App" width="80%">
+  <table>
+    <tr>
+      <td align="center">
+        <b>QRIS / DANA / OVO</b><br><br>
+        <img src="./public/qris.jpg" alt="QRIS Saweria" width="250" onerror="this.src='https://via.placeholder.com/250x300?text=SCAN+QRIS+DISINI'"><br>
+        <i>Scan QR di atas buat kasih saweran</i>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ---
 
-## ⚙️ Installation & Local Setup
+## 📄 License
 
-Mau coba jalanin di lokal? Gampang banget:
-
-1.  **Clone the repo**
-    ```bash
-    git clone [https://github.com/username-kamu/tiktok-downloader.git](https://github.com/username-kamu/tiktok-downloader.git)
-    ```
-2.  **Masuk ke folder**
-    ```bash
-    cd tiktok-downloader
-    ```
-3.  **Install dependencies**
-    ```bash
-    npm install
-    ```
-4.  **Run Development**
-    ```bash
-    npm run dev
-    ```
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 
-## 📦 Project Structure
-
-```text
-├── src/
-│   ├── App.jsx        # Logic utama & State Management
-│   ├── styles.css     # Styling (Flexbox & Grid Master)
-│   └── main.jsx       # Entry point
-├── public/            # Static assets
-└── index.html         # HTML Boilerplate
+<div align="center">
+  <p>Built with ❤️ by <b>apx.co</b> in collaboration with <b>AI</b></p>
+  <a href="https://github.com/username-kamu">
+    <img src="https://img.shields.io/github/followers/username-kamu?label=Follow&style=social" alt="GitHub Follow">
+  </a>
+</div>
