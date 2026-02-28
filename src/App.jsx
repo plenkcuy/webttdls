@@ -106,14 +106,28 @@ function App() {
         {/* HASIL DOWNLOAD */}
         {result && !loading && (
           <div className="result-card success">
-            <video
-  key={result.no_watermark_link} // Menjamin elemen di-refresh total
-  className="video-preview"
-  controls
-  preload="metadata" // Agar tidak mendownload seluruh file HD di awal
-  src={result.no_watermark_link}
-/>
-
+            {result.images && result.images.length > 0 ? (
+              <div className="image-container">
+                <h3>📸 {result.images.length} Photos Found</h3>
+                <div className="image-gallery">
+                  {result.images.map((imgUrl, index) => (
+                    <div key={index} className="image-item">
+                      <img src={imgUrl} alt={`Slide ${index}`} />
+                      <a href={imgUrl} target="_blank" rel="noreferrer">
+                        <button className="btn-download-img">Download</button>
+                      </a>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+            <video key={result.no_watermark_link} // Menjamin elemen di-refresh total
+              className="video-preview"
+              controls
+              preload="metadata" // Agar tidak mendownload seluruh file HD di awal
+              src={result.no_watermark_link}
+              />
+          )}
             <div className="stats">
               <div className="stat">{result.text}</div>
               <div className="stat">❤️ {result.like_count}</div>
