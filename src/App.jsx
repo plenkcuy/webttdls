@@ -85,27 +85,27 @@ useEffect(() => {
           <p className="subtitle">Download video tanpa watermark dengan cepat</p>
 
           <form onSubmit={handleSubmit} className="download-form">
-            <div className="input-group">
-              <input
-                type="text"
-                placeholder="Paste link TikTok di sini..."
-                value={url}
-                onChange={(e) => setUrl(e.target.value)}
-                required
-              />
-              <button 
-                type="button" 
-                className="btn-paste" 
-                onClick={handlePaste}
-                title="Tempel dari Clipboard"
-              >
-                📋 Paste
-              </button>
-              <button type="submit" className="btn-primary">
-                Convert
-              </button>
-            </div>
-          </form>
+  <div className="input-group">
+    {/* 1. INPUT DI KIRI */}
+    <input
+      type="text"
+      placeholder="Paste link TikTok di sini..."
+      value={url}
+      onChange={(e) => setUrl(e.target.value)}
+      required
+    />
+    
+    {/* 2. PASTE DI TENGAH/SEBELUM CONVERT */}
+    <button type="button" className="btn-paste" onClick={handlePaste}>
+      📋 Paste
+    </button>
+    
+    {/* 3. CONVERT DI KANAN */}
+    <button type="submit" className="btn-primary">
+      Convert
+    </button>
+  </div>
+</form>
         </div>
       </section>
 
