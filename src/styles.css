@@ -91,23 +91,6 @@
   margin-bottom: 25px;
 }
 
-/* INPUT GROUP */
-.input-group {
-  display: flex;
-  gap: 10px;
-}
-
-.input-group input {
-  flex: 1;
-  padding: 14px 18px;
-  border-radius: 30px;
-  border: 1px solid var(--card-border);
-  outline: none;
-  background: var(--input-bg);
-  color: var(--text-main);
-  transition: all 0.5s ease;
-}
-
 /* Container Input Group */
 .input-group {
   display: flex;
