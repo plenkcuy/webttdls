@@ -91,59 +91,61 @@
   margin-bottom: 25px;
 }
 
-/* Container Input Group */
 .input-group {
   display: flex;
-  background: var(--input-bg);
-  padding: 5px;
-  border-radius: 50px;
-  border: 1px solid var(--card-border);
-  gap: 5px;
   align-items: center;
+  background: rgba(255, 255, 255, 0.05); /* Transparan gelap */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px; /* Membuat bentuk kapsul */
+  padding: 8px 10px;
+  gap: 10px;
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .input-group input {
-  flex: 1;
+  flex: 1; /* Mengambil sisa ruang kosong */
   background: transparent;
   border: none;
-  padding: 12px 20px;
-  color: var(--text-main);
   outline: none;
-  font-size: 14px;
+  color: white;
+  padding: 10px 15px;
+  font-size: 15px;
 }
 
-/* Tombol Paste Khusus */
+/* Tombol Paste Kecil di dalam bar */
 .btn-paste {
-  background: rgba(128, 128, 128, 0.1);
-  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.1);
   border: none;
+  color: white;
   padding: 8px 15px;
   border-radius: 20px;
-  cursor: pointer;
   font-size: 12px;
-  font-weight: 600;
-  transition: all 0.2s ease;
+  cursor: pointer;
   white-space: nowrap;
+  transition: 0.3s;
 }
 
 .btn-paste:hover {
-  background: rgba(128, 128, 128, 0.2);
-  transform: scale(1.05);
+  background: rgba(255, 255, 255, 0.2);
 }
 
+/* Tombol Convert di paling kanan */
 .btn-primary {
-  padding: 10px 25px;
-  border-radius: 50px;
-  border: none;
-  background: var(--accent); /* Warna biru/pink aksen kamu */
+  background: #5f5fff; /* Warna biru sesuai gambar kamu */
   color: white;
-  font-weight: 700;
+  border: none;
+  padding: 10px 25px;
+  border-radius: 30px;
+  font-weight: 600;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: 0.3s;
 }
 
 .btn-primary:hover {
-  background: var(--btn-hover);
+  background: #4444ff;
+  transform: scale(1.05);
 }
 
 /* RESULT SECTION */
