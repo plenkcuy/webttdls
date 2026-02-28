@@ -244,41 +244,49 @@
 }
 
 /* Styling Dasar Tombol Download */
+/* Container Utama Tombol */
+.button-group {
+  display: flex;
+  flex-direction: row; /* Selalu berjejer ke samping */
+  gap: 10px;           /* Jarak antar tombol */
+  width: 100%;
+  max-width: 400px;    /* Batas lebar maksimal agar tidak terlalu lebar di PC */
+  margin: 25px auto 0 auto;
+  padding: 0 10px;     /* Spasi sisi kiri-kanan */
+}
+
+/* Wrapper Link (PENTING: Ini yang mengontrol ukuran) */
+.button-group a {
+  flex: 1;             /* Membagi ruang sama rata (50/50 atau 100%) */
+  text-decoration: none;
+  display: block;
+}
+
+/* Styling Tombolnya */
 .btn-download {
-  flex: 1; /* Agar tombol berbagi ruang secara adil */
-  min-width: 160px;
-  padding: 14px 24px;
-  border-radius: 50px; /* Membuatnya bulat sempurna di ujung */
+  width: 100%;         /* WAJIB: Agar tombol memenuhi ruang tag <a> */
+  padding: 12px 10px;  /* Padding atas-bawah 12px */
+  border-radius: 50px;
   border: none;
   cursor: pointer;
   font-family: 'Poppins', sans-serif;
-  font-weight: 600; /* Tulisan lebih tebal */
-  font-size: 14px;
+  font-weight: 600;
+  font-size: 13px;     /* Ukuran font sedikit dikecilkan agar muat di HP kecil */
   color: white;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Memberikan efek kedalaman */
+  gap: 6px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  white-space: nowrap; /* Teks tidak boleh turun ke bawah */
 }
 
-/* Warna Spesifik Video */
-.btn-download.video {
-  background: linear-gradient(135deg, #4444ff, #5f5fff);
-}
+/* Warna */
+.btn-download.video { background: linear-gradient(135deg, #4444ff, #5f5fff); }
+.btn-download.music { background: linear-gradient(135deg, #ff4db8, #ff71ce); }
 
-/* Warna Spesifik Music */
-.btn-download.music {
-  background: linear-gradient(135deg, #ff4db8, #ff71ce);
-}
-
-/* Efek Hover (Saat kursor di atas tombol) */
-.btn-download:hover {
-  transform: translateY(-3px); /* Tombol sedikit naik */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  filter: brightness(1.1); /* Sedikit lebih terang */
-}
+.btn-download:hover { transform: translateY(-2px); filter: brightness(1.1); }
 
 .btn-download:active {
   transform: translateY(0); /* Kembali ke posisi semula saat diklik */
