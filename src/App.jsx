@@ -21,44 +21,38 @@ function App() {
   };
 
   // AUTO PASTE DETECTION
-  useEffect(() => {
-    const autoPaste = async () => {
-      try {
-        // Cek status izin clipboard dahulu (opsional namun disarankan)
-        const queryOpts = { name: 'clipboard-read', allowWithoutGesture: false };
-        const permissionStatus = await navigator.permissions.query(queryOpts);
-
-        if (permissionStatus.state === 'granted' || permissionStatus.state === 'prompt') {
-          const text = await navigator.clipboard.readText();
-          if (isValidTikTok(text)) {
-            setUrl(text);
-          }
-        }
-      } catch (err) {
-        // Gagal auto-paste biasanya karena user belum berinteraksi dengan halaman
-      }
-    };
-
-    // Jalankan setelah sedikit delay agar browser siap
-    const timer = setTimeout(autoPaste, 1000);
-    return () => clearTimeout(timer);
-  }, []);
-
-  const handlePaste = async () => {
+  // --- CARA YANG BENAR ---
+useEffect(() => {
+  // Buat fungsi async di DALAM useEffect
+  const autoPaste = async () => {
     try {
+      // Sekarang 'await' aman digunakan di sini
       const text = await navigator.clipboard.readText();
-      if (text) {
+      if (text && isValidTikTok(text)) {
         setUrl(text);
-        // Opsional: Langsung trigger convert jika link valid
-        if (isValidTikTok(text)) {
-          // Kamu bisa memanggil handleSubmit di sini jika ingin auto-convert
-        }
       }
     } catch (err) {
-      console.error("Gagal membaca clipboard:", err);
+      // Abaikan jika user belum berinteraksi atau permission ditolak
     }
   };
 
+  autoPaste();
+}, []); // Dependency array kosong agar jalan 1x saat load
+
+  const handlePaste = async () => {
+  try {
+    const text = await navigator.clipboard.readText();
+    setUrl(text);
+  } catch (err) {
+    console.error("Gagal membaca clipboard");
+  }
+};
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setError("");
+  setResult(null);
+    
     setLoading(true);
 
     try {
