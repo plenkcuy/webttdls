@@ -170,45 +170,82 @@
 .btn-download.video { background: #4444ff; }
 .btn-download.music { background: #ff4db8; }
 
-/* Container untuk membungkus semua gambar */
-.image-gallery {
+/* Container Foto */
+.image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 12px;
-  max-height: 350px; /* Batasi tinggi agar tidak terlalu panjang */
-  overflow-y: auto;  /* Tambahkan scroll jika gambar banyak */
-  padding: 10px;
-  background: var(--input-bg);
-  border-radius: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+  margin: 20px 0;
+  max-height: 450px;
+  overflow-y: auto;
+  padding-right: 10px;
 }
 
-/* Item gambar individu */
-.image-item {
+/* Scrollbar tipis agar tetap elegan */
+.image-grid::-webkit-scrollbar {
+  width: 5px;
+}
+.image-grid::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+.image-card {
   position: relative;
-  aspect-ratio: 9 / 16;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
+  background: var(--input-bg);
+  aspect-ratio: 3 / 4;
 }
 
-.image-item img {
+.image-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Tombol kecil di atas gambar */
-.btn-download-img {
+.btn-mini-download {
   position: absolute;
   bottom: 8px;
   left: 50%;
   transform: translateX(-50%);
-  padding: 5px 10px;
-  font-size: 11px;
-  background: var(--accent);
+  background: rgba(0, 0, 0, 0.6);
   color: white;
   border: none;
+  padding: 4px 12px;
   border-radius: 20px;
+  font-size: 10px;
+  backdrop-filter: blur(4px);
   cursor: pointer;
+}
+
+/* TEXT CREATOR (SESUAI REQUEST: BESAR & ELEGAN) */
+.footer {
+  margin-top: 50px; /* Jarak pas, tidak terlalu bawah */
+  padding-bottom: 30px;
+}
+
+.creator-text {
+  font-size: 22px; /* Lebih besar */
+  font-weight: 800; /* Tebal/Extra Bold */
+  letter-spacing: 6px; /* Spasi antar huruf lebar agar mewah */
+  text-transform: uppercase;
+  color: var(--text-main);
+  opacity: 0.7;
+  transition: 0.3s;
+}
+
+.creator-text:hover {
+  opacity: 1;
+  color: var(--accent);
+  letter-spacing: 8px; /* Efek melebar saat di-hover */
+}
+
+.description {
+  font-size: 14px;
+  margin-bottom: 15px;
+  opacity: 0.9;
+  line-height: 1.4;
 }
 
 /* SKELETON ANIMATION */
@@ -224,28 +261,4 @@
 
 @media(max-width:768px) {
   .input-group { flex-direction: column; }
-}
-
-.footer {
-  width: 100%;
-  text-align: center;
-  margin-top: 30px; /* Jarak tetap dari kartu terakhir, tidak lari ke bawah layar */
-  padding-bottom: 20px;
-}
-
-.creator-text {
-  font-size: 18px; /* Ukuran diperbesar */
-  font-weight: 600; /* Lebih tebal agar tegas */
-  color: var(--text-main); /* Menggunakan warna utama agar lebih jelas */
-  letter-spacing: 2px; /* Jarak antar huruf lebih elegan */
-  text-transform: uppercase; /* Membuatnya jadi huruf kapital semua agar 'Pro' */
-  opacity: 0.6;
-  transition: all 0.3s ease;
-  font-family: 'Poppins', sans-serif;
-}
-
-.creator-text:hover {
-  opacity: 1;
-  letter-spacing: 4px; /* Efek interaktif saat disentuh */
-  color: var(--accent);
 }
