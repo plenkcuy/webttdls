@@ -63,7 +63,7 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 <div align="center">
   <p>Built with ❤️ by <b>apx.co</b> in collaboration with <b>AI</b></p>
-  <a href="https://github.com/username-kamu">
-    <img src="https://img.shields.io/github/followers/username-kamu?label=Follow&style=social" alt="GitHub Follow">
+  <a href="https://github.com/plenkcuy">
+    <img src="https://img.shields.io/github/followers/plenkcuy?label=Follow&style=social" alt="GitHub Follow">
   </a>
 </div>
